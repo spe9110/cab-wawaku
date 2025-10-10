@@ -1,0 +1,27 @@
+{
+  "name": "cab-wawaku",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+ "scripts": {
+    "prod": "npm run start --prefix backend",
+    "server": "npm run dev --prefix backend",
+    "client": "npm run dev --prefix frontend",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spe9110/cab-wawaku.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/spe9110/cab-wawaku/issues"
+  },
+  "homepage": "https://github.com/spe9110/cab-wawaku#readme",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

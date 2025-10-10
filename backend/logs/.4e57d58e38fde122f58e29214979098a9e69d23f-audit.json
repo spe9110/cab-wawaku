@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "logs\\.4e57d58e38fde122f58e29214979098a9e69d23f-audit.json",
+    "files": [
+        {
+            "date": 1760110921855,
+            "name": "logs\\wawaku-2025-10-10.log",
+            "hash": "41a0491192eac2fd9cd3347785157cdf4bb0be379f16940937ce9b079cb958bb"
+        }
+    ],
+    "hashType": "sha256"
+}

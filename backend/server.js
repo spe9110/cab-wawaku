@@ -4,7 +4,8 @@ import morgan from "morgan";
 import helmet from "helmet"
 import cookieParser from 'cookie-parser';
 import connectDB from './Config/db.js';
-// import { notFound, errorHandler } from './Middlewares/errorHandler.js';
+import requestLogger from './middlewares/requestLogger.js';
+import { notFound, errorHandler } from './Middlewares/errorHandler.js';
 import bodyParser from 'body-parser';
 // import userRoute from "./Routes/user_route.js";
 // import authRoute from './Routes/auth_route.js';
@@ -16,7 +17,8 @@ import bodyParser from 'body-parser';
 // import contactRoute from './Routes/contactMessage_route.js'
 // import appointmentRoute from "./Routes/appointment_route.js"
 import cors from 'cors';
-import passport from 'passport';
+import promClient from 'prom-client';
+// import passport from 'passport';
 // import { passportConfig } from './Config/passport.js';
 
 // Load environment variables from .env file
@@ -31,6 +33,7 @@ const PORT = process.argv[2] || process.env.PORT || 4000;
 // Middleware to parse JSON requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(requestLogger);
 
 // handle static file
 // app.set('Views', path.join(__dirname, 'Views'));
@@ -62,13 +65,20 @@ app.use(cookieParser());
 // app.use('/api/v1/contact', contactRoute);
 // app.use('/api/v1/appointment', appointmentRoute)
 
-app.get('/', (req, res) => {
-    res.send("Wawaku law firm is Dockerize successfully")
-})
+// --- Health check ---
+app.get('/', (req, res) => res.send('✅ Wawaku Law Firm backend is running'));
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+// --- Prometheus metrics endpoint ---
+app.get('/metrics', async (req, res) => {
+    res.setHeader('Content-Type', promClient.register.contentType);
+    res.end(await promClient.register.metrics());
+});
 
 // Error handler middleware
-// app.use(notFound);
-// app.use(errorHandler);
+app.use(notFound);
+app.use(errorHandler);
+
+// --- Start server ---
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 })
@@ -82,3 +92,20 @@ app.listen(PORT, () => {
 // npm i node-cache
 // npm i prom-client
 // npm install --save-dev nodemon
+// npm i winston-daily-rotate-file winston-loki
+
+/*
+
+Security (Helmet, CORS)
+
+Request logging & metrics
+
+Error handling
+
+Ready for Docker and scaling
+✅ Production-grade logging (Winston + Loki + rotation)
+✅ Prometheus metrics for monitoring
+✅ Safe error handling & scrubbing
+✅ Ready for scaling & observability
+
+*/ 
