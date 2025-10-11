@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      target: development
+    container_name: cab-wawaku-backend
+    ports:
+      - "4000:4000"      # Backend API
+      - "9100:9100"      # Optional Prometheus metrics port (if your app exposes it)
+    env_file:
+      - backend/.env
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: always     # Ensures backend auto-restarts if it crashes
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  frontend:
+    build:
+      context: ./frontend
+      target: development
+    container_name: cab-wawaku-frontend
+    ports:
+      - "5173:5173"
+      - "80:80"
+    environment:
+      - VITE_API_URL=http://backend:4000
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - backend
+    restart: always

@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "logs\\.4e57d58e38fde122f58e29214979098a9e69d23f-audit.json",
+    "files": [
+        {
+            "date": 1760110921855,
+            "name": "logs\\wawaku-2025-10-10.log",
+            "hash": "41a0491192eac2fd9cd3347785157cdf4bb0be379f16940937ce9b079cb958bb"
+        },
+        {
+            "date": 1760163520929,
+            "name": "logs\\wawaku-2025-10-11.log",
+            "hash": "d1865fdc0e63e422957c56f736f441bfa89dee70fd7c97096fb92754914aceae"
+        },
+        {
+            "date": 1760190272500,
+            "name": "logs/wawaku-2025-10-11.log",
+            "hash": "c5fcda0ec759722a965ad1deda9d24ea383cf94cf8a2a36e06f6f303e7bc760c"
+        }
+    ],
+    "hashType": "sha256"
+}
