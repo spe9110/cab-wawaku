@@ -107,3 +107,10 @@ Prometheus metrics for performance
 JSON-structured log output
 
 */ 
+/*
+
+Les UUID sont souvent utilisés comme clés primaires dans les bases de données distribuées, car ils garantissent l'unicité des données même lorsque les données sont stockées sur plusieurs serveurs.
+
+Dans les bases de données relationnelles, les UUID peuvent servir de clés primaires, offrant ainsi des avantages par rapport aux identifiants auto-incrémentés. Dans les bases de données NoSQL, ils simplifient la migration et la réplication des données en prévenant les conflits. Les UUID sont précieux dans les architectures de microservices et les systèmes distribués comme les infrastructures cloud .
+
+*/ 
