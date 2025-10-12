@@ -1,0 +1,23 @@
+{
+  "id": null,
+  "uid": "wawaku-dashboard",
+  "title": "Wawaku Backend Metrics",
+  "tags": ["backend", "prometheus"],
+  "timezone": "browser",
+  "schemaVersion": 16,
+  "version": 1,
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Requests over time",
+      "targets": [
+        {
+          "expr": "up",
+          "legendFormat": "backend status",
+          "refId": "A"
+        }
+      ],
+      "id": 1
+    }
+  ]
+}
