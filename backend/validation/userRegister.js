@@ -1,4 +1,4 @@
-import Joi from "joi";
+import Joi from "joi"
 
 export const userRegisterSchema = Joi.object({
     name: Joi.string().min(2).max(30).required().messages({

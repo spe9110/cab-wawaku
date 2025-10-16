@@ -1,5 +1,5 @@
-export const secretOrKey = "secretofwawakulawfirm";
+export const secretOrKey ="secretofwawakulawfirm";
 
-export const PASSWORD = "ztwqdwaxeswkfaaa";
+export const PASSWORD ="ztwqdwaxeswkfaaa";
 
-export const USER_SENDER = "spencernsituzola@gmail.com";
+export const USER_SENDER ="spencernsituzola@gmail.com";

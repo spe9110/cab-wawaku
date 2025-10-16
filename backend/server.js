@@ -7,8 +7,9 @@ import connectDB from './Config/db.js';
 import requestLogger from './middlewares/requestLogger.js';
 import { notFound, errorHandler } from './Middlewares/errorHandler.js';
 import bodyParser from 'body-parser';
-// import userRoute from "./Routes/user_route.js";
-// import authRoute from './Routes/auth_route.js';
+import expressListEndpoints from 'express-list-endpoints';
+import userRoute from "./routes/user_route.js";
+import authRoute from './routes/auth_route.js';
 // import feedbackRoute from './Routes/feedback_route.js'
 // import serviceRoute from './Routes/service_route.js'
 // import addressRoute from "./Routes/address_route.js"
@@ -18,8 +19,9 @@ import bodyParser from 'body-parser';
 // import appointmentRoute from "./Routes/appointment_route.js"
 import cors from 'cors';
 import promClient from 'prom-client';
-// import passport from 'passport';
-// import { passportConfig } from './Config/passport.js';
+import passport from 'passport';
+import { passportConfig } from './config/passport.js';
+
 
 // Load environment variables from .env file
 dotenv.config();
@@ -37,6 +39,7 @@ app.use(requestLogger);
 
 // handle static file
 // app.set('Views', path.join(__dirname, 'Views'));
+
 // Enable cors 
 app.use(cors({
     origin: process.env.FRONTEND_URL || "http://localhost:5173",
@@ -46,17 +49,17 @@ app.use(cors({
 // Help secure Express apps by setting HTTP response headers.
 app.use(helmet());
  // Middleware for logging requests to the console better for debugging
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 // Middleware for parsing cookies
 app.use(cookieParser());
 
 // Initialize Passport for authentication
-// app.use(passport.initialize());
-// passportConfig(passport);
+app.use(passport.initialize());
+passportConfig(passport);
 
 //Middleware to handle Routes
-// app.use('/api/v1/auth/users', authRoute);
-// app.use('/api/v1/users', userRoute);
+app.use('/api/v1/auth/users', authRoute);
+app.use('/api/v1/users', userRoute);
 // app.use('/api/v1/feedback', feedbackRoute);
 // app.use('/api/v1/service', serviceRoute);
 // app.use('/api/v1/lawyer', lawyerRoute);
@@ -78,13 +81,15 @@ app.get('/metrics', async (req, res) => {
 app.use(notFound);
 app.use(errorHandler);
 
+
 // --- Start server ---
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+    console.log(expressListEndpoints(app));
 })
 
 
-// npm install express cors dotenv mongoose
+// npm install express cors dotenv mongoose joi nodemailer
 // npm install bcryptjs body-parser jsonwebtoken passport passport-jwt cookie-parser helmet
 // npm i express-rate-limit axios luxon
 // npm i request-ip morgan
@@ -93,6 +98,7 @@ app.listen(PORT, () => {
 // npm i prom-client
 // npm install --save-dev nodemon
 // npm i winston-daily-rotate-file winston-loki
+// npm i express-list-endpoints
 
 /*
 
