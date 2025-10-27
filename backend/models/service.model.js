@@ -79,7 +79,7 @@ const serviceSchema = new Schema({
     },
     isActive: {
         type: Boolean,
-        default: true
+        default: false
     },
     lawyers: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -109,3 +109,12 @@ const serviceSchema = new Schema({
 const Service = mongoose.model("Service", serviceSchema);
 
 export default Service;
+
+/*
+
+https://www.alexia.fr/activite-3505/avocat-en-droit-des-etrangers.htm?utm_source=google&utm_medium=CPC&utm_campaign=penal&t=c&gad_source=1&gad_campaignid=22526019779&gbraid=0AAAAADiDQB4EJWGruKgymbUs9v99XdWN1&gclid=CjwKCAjw0sfHBhB6EiwAQtv5qQQkxSpmJx4FZNo_hbJBVmUUu579I_FJ6E8-5_itYE-sbm-iySIyFxoC5d8QAvD_BwE
+
+https://www.dolivet-avocat.com/premiere-rencontre
+
+
+*/ 

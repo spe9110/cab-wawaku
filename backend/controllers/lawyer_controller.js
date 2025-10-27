@@ -5,7 +5,7 @@ import { lawyerValidationSchema, updateLawyerValidationSchema } from "../validat
 // @desc This route is used to get all lawyer data
 // @route api/v1/lawyer/
 // PUBLIC
-export const getAllLawyers = async (req, res, next) => {
+const getAllLawyers = async (req, res, next) => {
     try {
         const lawyers = await Lawyer.find({});
         if(lawyers.length === 0) {
@@ -27,7 +27,7 @@ export const getAllLawyers = async (req, res, next) => {
 // @desc This route is used to get a single lawyer data
 // @route api/v1/lawyer/:id
 // PUBLIC
-export const getSingleLawyer = async (req, res, next) => {
+const getSingleLawyer = async (req, res, next) => {
     try {
         const { id } = req.params;
         const lawyer = await Lawyer.findById(id);
